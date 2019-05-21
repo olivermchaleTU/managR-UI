@@ -1,35 +1,47 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3 eq-height">
       <div class="drag-container">
-        <div class="section-heading">To Do</div>
-        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
-          [cdkDropListConnectedTo]="[doneList,progressList]" class="item-list" (cdkDropListDropped)="drop($event)">
-          <div class="item-box" *ngFor="let item of todo" cdkDrag>
+        <div class="section-heading">{{story?.title}}</div>
+        <div cdkDropList #storyList="cdkDropList" [cdkDropListData]="story"
+          [cdkDropListConnectedTo]="[todoList,progressList,doneList]" class="item-list" (cdkDropListDropped)="drop($event)">
+          <div class="item-box" *ngFor="let item of story?.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-        <div class="drag-container">
-          <div class="section-heading">In Progress</div>
-          <div cdkDropList #progressList="cdkDropList" [cdkDropListData]="inProgress"
-            [cdkDropListConnectedTo]="[doneList,todoList]" class="item-list" (cdkDropListDropped)="drop($event)">
-            <div class="item-box" *ngFor="let item of inProgress" cdkDrag>
-              <strong>{{item.title}}</strong>
-              <p>{{item.description}}</p>
-            </div>
+    <div class="col-md-3 eq-height">
+      <div class="drag-container">
+        <div class="section-heading">{{todo?.title}}</div>
+        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[storyList, doneList,progressList]" class="item-list" (cdkDropListDropped)="drop($event)">
+          <div class="item-box" *ngFor="let item of todo?.tasks" cdkDrag>
+            <strong>{{item.title}}</strong>
+            <p>{{item.description}}</p>
           </div>
         </div>
       </div>
-    <div class="col-md-4">
+    </div>
+    <div class="col-md-3 eq-height">
       <div class="drag-container">
-        <div class="section-heading">Done</div>
+        <div class="section-heading">{{progress?.title}}</div>
+        <div cdkDropList #progressList="cdkDropList" [cdkDropListData]="progress"
+          [cdkDropListConnectedTo]="[storyList, doneList,todoList]" class="item-list" (cdkDropListDropped)="drop($event)">
+          <div class="item-box" *ngFor="let item of progress?.tasks" cdkDrag>
+            <strong>{{item.title}}</strong>
+            <p>{{item.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 eq-height">
+      <div class="drag-container">
+        <div class="section-heading">{{done?.title}}</div>
         <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
-          [cdkDropListConnectedTo]="[todoList,progressList]" class="item-list" (cdkDropListDropped)="drop($event)">
-          <div class="item-box" *ngFor="let item of done" cdkDrag>
+          [cdkDropListConnectedTo]="[storyList, todoList,progressList]" class="item-list" (cdkDropListDropped)="drop($event)">
+          <div class="item-box" *ngFor="let item of done?.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
           </div>

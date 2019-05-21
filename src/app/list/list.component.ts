@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { BoardService } from '../board-service/board.service';
 
 @Component({
   selector: 'app-list',
@@ -7,40 +8,19 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  todo = [
-    {
-      title: 'Get to work',
-      description: 'Get in the car and drive to work'
-    },
-    {
-      title: 'Pick up groceries',
-      description: 'Get in the car and pick up groceries'
-    },
-    {
-      title: 'Get Changed',
-      description: 'Find clothes, get changed'
-    }
-  ];
- 
-  done = [
-    {
-      title: 'Win a game of league',
-      description: 'Pick Rengar and win a game'
-    }
-  ];
- 
-  inProgress = [
-    {
-      title: 'Show off work',
-      description: 'Fail to impress friends by showing lackluster work'
-    }
-  ];
+  story: any;
+  todo: any;
+  progress: any;
+  done: any;
 
-  constructor() {
-
+  constructor(private boardService: BoardService) {
   }
 
   ngOnInit() {
+    this.boardService.getBoard().subscribe(
+      resp => this.handleBoardResponse(resp),
+      err => this.handleBoardError(err)
+    )
   }
 
   drop($event: CdkDragDrop<string[]>) {
@@ -52,6 +32,19 @@ export class ListComponent implements OnInit {
                         $event.previousIndex,
                         $event.currentIndex);
     }
+    console.log('story: ' + this.story);
+    console.log('todo: ' + this.todo);
+  }
+
+  handleBoardResponse(resp: any) {
+    this.story = resp.story;
+    this.todo = resp.todo;
+    this.progress = resp.progress;
+    this.done = resp.done;
+  }
+
+  handleBoardError(error: any) {
+    console.log(error);
   }
 }
 
