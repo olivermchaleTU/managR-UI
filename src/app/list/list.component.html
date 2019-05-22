@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 eq-height">
-      <div class="drag-container">
+      <div class="drag-container" [class.dragged]="story.dragged">
         <div class="section-heading">{{story.title}}</div>
-        <div cdkDropList id="story" #storyList="cdkDropList" [cdkDropListData]="story.tasks"
-          [cdkDropListConnectedTo]="[todoList, progressList, doneList]" class="item-list" (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)">
+        <div id="story" #storyList="cdkDropList" [cdkDropListData]="story.tasks"
+          [cdkDropListConnectedTo]="[todoList, progressList, doneList]" class="item-list" (cdkDropListDropped)="drop($event)" 
+          (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of story.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
@@ -13,10 +14,11 @@
       </div>
     </div>
     <div class="col-md-3 eq-height">
-      <div class="drag-container">
+      <div class="drag-container" [class.dragged]="todo.dragged">
         <div class="section-heading">{{todo.title}}</div>
         <div cdkDropList id="todo" #todoList="cdkDropList" [cdkDropListData]="todo.tasks"
-          [cdkDropListConnectedTo]="[storyList, progressList, doneList]" class="item-list" (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)">
+          [cdkDropListConnectedTo]="[storyList, progressList, doneList]" class="item-list" 
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of todo.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
@@ -25,10 +27,11 @@
       </div>
     </div>
     <div class="col-md-3 eq-height">
-      <div class="drag-container">
+      <div class="drag-container" [class.dragged]="progress.dragged">
         <div class="section-heading">{{progress.title}}</div>
         <div cdkDropList id="progress" #progressList="cdkDropList" [cdkDropListData]="progress.tasks"
-          [cdkDropListConnectedTo]="[storyList, todoList, doneList]" class="item-list" (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)">
+          [cdkDropListConnectedTo]="[storyList, todoList, doneList]" class="item-list" 
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of progress.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
@@ -37,10 +40,11 @@
       </div>
     </div>
     <div class="col-md-3 eq-height">
-      <div class="drag-container">
+      <div class="drag-container" [class.dragged]="done.dragged">
         <div class="section-heading">{{done.title}}</div>
         <div cdkDropList id="done" #doneList="cdkDropList" [cdkDropListData]="done.tasks"
-          [cdkDropListConnectedTo]="[storyList, todoList, progressList]" class="item-list" (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)">
+          [cdkDropListConnectedTo]="[storyList, todoList, progressList]" class="item-list" 
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of done.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>

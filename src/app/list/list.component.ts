@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragEnter, CdkDragExit } from '@angular/cdk/drag-drop';
 import { BoardService } from '../board-service/board.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   todo: any;
   progress: any;
   done: any;
-  isDragged = false
+  isDragged = false;
 
   constructor(private boardService: BoardService) {
   }
@@ -21,10 +21,13 @@ export class ListComponent implements OnInit {
     this.boardService.getBoard().subscribe(
       resp => this.handleBoardResponse(resp),
       err => this.handleBoardError(err)
-    )
+    );
   }
 
   drop($event: CdkDragDrop<string[]>) {
+
+    this.dropListExited($event);
+
     if ($event.previousContainer === $event.container) {
       moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
     } else {
@@ -46,23 +49,41 @@ export class ListComponent implements OnInit {
     console.log(error);
   }
 
-  dropListEntered($event) {
+  dropListEntered($event: CdkDragEnter) {
     switch ($event.container.id) {
       case 'story':
-          console.log('hovering story')
+          this.story.dragged = true;
           break;
       case 'todo':
-          console.log('hovering todo')
+          this.todo.dragged = true;
           break;
       case 'progress':
-          console.log('hovering progress')
+          this.progress.dragged = true;
           break;
       case 'done':
-          console.log('hovering done')
+          this.done.dragged = true;
           break;
-    
       default:
-        break;
+          break;
+    }
+  }
+
+  dropListExited($event: CdkDragExit) {
+    switch ($event.container.id) {
+      case 'story':
+          this.story.dragged = false;
+          break;
+      case 'todo':
+          this.todo.dragged = false;
+          break;
+      case 'progress':
+          this.progress.dragged = false;
+          break;
+      case 'done':
+          this.done.dragged = false;
+          break;
+      default:
+          break;
     }
   }
 }
