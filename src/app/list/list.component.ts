@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
   todo: any;
   progress: any;
   done: any;
+  isDragged = false
 
   constructor(private boardService: BoardService) {
   }
@@ -32,8 +33,6 @@ export class ListComponent implements OnInit {
                         $event.previousIndex,
                         $event.currentIndex);
     }
-    console.log('story: ' + this.story);
-    console.log('todo: ' + this.todo);
   }
 
   handleBoardResponse(resp: any) {
@@ -45,6 +44,26 @@ export class ListComponent implements OnInit {
 
   handleBoardError(error: any) {
     console.log(error);
+  }
+
+  dropListEntered($event) {
+    switch ($event.container.id) {
+      case 'story':
+          console.log('hovering story')
+          break;
+      case 'todo':
+          console.log('hovering todo')
+          break;
+      case 'progress':
+          console.log('hovering progress')
+          break;
+      case 'done':
+          console.log('hovering done')
+          break;
+    
+      default:
+        break;
+    }
   }
 }
 

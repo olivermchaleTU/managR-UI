@@ -15,6 +15,10 @@
   padding: 15px;
   border-radius: 5px;
 }
+
+.hovered {
+  background-color: red;
+}
  
 .eq-height {
   display: -webkit-box;
@@ -29,6 +33,7 @@
   border-radius: 4px;
   display: block;
 }
+
  
 .item-box {
   padding: 8px 10px;
