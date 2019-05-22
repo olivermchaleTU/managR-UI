@@ -2,10 +2,12 @@
   <div class="row">
     <div class="col-md-3 eq-height">
       <div class="drag-container" [class.dragged]="story.dragged">
-        <div class="section-heading">{{story.title}}</div>
+        <hr class="seperator" />
+        <div class="section-heading text-center">{{story.title}}</div>
         <div cdkDropList id="story" #storyList="cdkDropList" [cdkDropListData]="story.tasks"
-          [cdkDropListConnectedTo]="[todoList, progressList, doneList]" class="item-list" (cdkDropListDropped)="drop($event)" 
-          (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
+          [cdkDropListConnectedTo]="[todoList, progressList, doneList]" class="item-list"
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)"
+          (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of story.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
@@ -15,10 +17,12 @@
     </div>
     <div class="col-md-3 eq-height">
       <div class="drag-container" [class.dragged]="todo.dragged">
-        <div class="section-heading">{{todo.title}}</div>
+        <hr class="seperator" />
+        <div class="section-heading text-center">{{todo.title}}</div>
         <div cdkDropList id="todo" #todoList="cdkDropList" [cdkDropListData]="todo.tasks"
-          [cdkDropListConnectedTo]="[storyList, progressList, doneList]" class="item-list" 
-          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
+          [cdkDropListConnectedTo]="[storyList, progressList, doneList]" class="item-list"
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)"
+          (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of todo.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
@@ -28,10 +32,12 @@
     </div>
     <div class="col-md-3 eq-height">
       <div class="drag-container" [class.dragged]="progress.dragged">
-        <div class="section-heading">{{progress.title}}</div>
+        <hr class="seperator" />
+        <div class="section-heading text-center">{{progress.title}}</div>
         <div cdkDropList id="progress" #progressList="cdkDropList" [cdkDropListData]="progress.tasks"
-          [cdkDropListConnectedTo]="[storyList, todoList, doneList]" class="item-list" 
-          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
+          [cdkDropListConnectedTo]="[storyList, todoList, doneList]" class="item-list"
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)"
+          (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of progress.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
@@ -41,19 +47,18 @@
     </div>
     <div class="col-md-3 eq-height">
       <div class="drag-container" [class.dragged]="done.dragged">
-        <div class="section-heading">{{done.title}}</div>
+        <hr class="seperator" />
+        <div class="section-heading text-center">{{done.title}}</div>
         <div cdkDropList id="done" #doneList="cdkDropList" [cdkDropListData]="done.tasks"
-          [cdkDropListConnectedTo]="[storyList, todoList, progressList]" class="item-list" 
-          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)" (cdkDropListExited)="dropListExited($event)">
+          [cdkDropListConnectedTo]="[storyList, todoList, progressList]" class="item-list"
+          (cdkDropListDropped)="drop($event)" (cdkDropListEntered)="dropListEntered($event)"
+          (cdkDropListExited)="dropListExited($event)">
           <div class="item-box" *ngFor="let item of done.tasks" cdkDrag>
             <strong>{{item.title}}</strong>
             <p>{{item.description}}</p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-12">
-      <hr/>
     </div>
   </div>
 </div>

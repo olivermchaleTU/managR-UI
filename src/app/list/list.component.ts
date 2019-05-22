@@ -12,7 +12,6 @@ export class ListComponent implements OnInit {
   todo: any;
   progress: any;
   done: any;
-  isDragged = false;
 
   constructor(private boardService: BoardService) {
   }
