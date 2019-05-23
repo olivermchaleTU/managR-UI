@@ -5,15 +5,32 @@
 }
 
 .drag-container {
-  width: 400px;
+  width: 100%;
   height: 100%;
   max-width: 100%;
-  margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
   background-color: #E9ECEF;
   padding: 15px;
   border-radius: 5px;
+}
+
+.story-container {
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  display: inline-block;
+  background: white;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+}
+
+.story-title {
+  margin: 5px;
 }
 
 .dragged {
