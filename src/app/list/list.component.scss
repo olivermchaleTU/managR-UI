@@ -33,6 +33,18 @@
   margin: 5px;
 }
 
+.fa-eye, .fa-eye-slash {
+  margin-top: 4px;
+}
+
+.fa-eye, .fa-eye-slash:hover {
+  cursor: pointer;
+}
+
+.collapse.show {
+  display: flex;
+}
+
 .dragged {
   background-color: #dae1e8;
 }

@@ -1,5 +1,8 @@
-<!-- todo: pass the titles/endpoints from backend, build UI up from responses -->
 <h1>board component</h1>
-<div>
-  <app-list></app-list>
+<div *ngFor="let story of stories">
+  <app-list [storyTitle]="story.title" 
+            [todo]="story.categories.todo" 
+            [progress]="story.categories.progress"
+            [done]="story.categories.done">
+  </app-list>
 </div>

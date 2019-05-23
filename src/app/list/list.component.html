@@ -1,14 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="story-container" [class.dragged]="story.dragged">
-        <div class="story-title" *ngFor="let item of story.tasks">
-          <strong>Viewing Story: </strong>{{item.title}}
+      <div class="story-container">
+        <div class="story-title">
+          <strong>Story: </strong>{{storyTitle}}
+          <i *ngIf="showStory" class="fa fa-eye-slash pull-right" (click)="toggleStoryVisiblity()" title="Hide Tasks"></i>
+          <i *ngIf="!showStory" class="fa fa-eye pull-right" (click)="toggleStoryVisiblity()" title="Show Tasks"></i>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" [ngbCollapse]="!showStory">
     <div class="col-md-4 eq-height">
       <div class="drag-container" [class.dragged]="todo.dragged">
         <hr class="seperator" />

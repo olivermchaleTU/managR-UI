@@ -8,19 +8,17 @@ import { BoardService } from '../board-service/board.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  story: any;
-  todo: any;
-  progress: any;
-  done: any;
+  @Input()storyTitle: any;
+  @Input()todo: any;
+  @Input()progress: any;
+  @Input()done: any;
+  showStory = true;
 
-  constructor(private boardService: BoardService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.boardService.getBoard().subscribe(
-      resp => this.handleBoardResponse(resp),
-      err => this.handleBoardError(err)
-    );
+
   }
 
   drop($event: CdkDragDrop<string[]>) {
@@ -37,22 +35,8 @@ export class ListComponent implements OnInit {
     }
   }
 
-  handleBoardResponse(resp: any) {
-    this.story = resp.story;
-    this.todo = resp.todo;
-    this.progress = resp.progress;
-    this.done = resp.done;
-  }
-
-  handleBoardError(error: any) {
-    console.log(error);
-  }
-
   dropListEntered($event: CdkDragEnter) {
     switch ($event.container.id) {
-      case 'story':
-          this.story.dragged = true;
-          break;
       case 'todo':
           this.todo.dragged = true;
           break;
@@ -69,9 +53,6 @@ export class ListComponent implements OnInit {
 
   dropListExited($event: CdkDragExit) {
     switch ($event.container.id) {
-      case 'story':
-          this.story.dragged = false;
-          break;
       case 'todo':
           this.todo.dragged = false;
           break;
@@ -84,6 +65,10 @@ export class ListComponent implements OnInit {
       default:
           break;
     }
+  }
+
+  toggleStoryVisiblity() {
+    this.showStory = !this.showStory;
   }
 }
 
