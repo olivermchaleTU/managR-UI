@@ -78,6 +78,14 @@
   background: white;
   font-size: 14px;
   border-radius: 20px;
+  cursor: move;
+  cursor: grab;
+}
+
+.item-box:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
 }
 
 .container {
